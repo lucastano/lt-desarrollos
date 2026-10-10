@@ -42,3 +42,23 @@ const yearElement = document.querySelector("#year");
 if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
 }
+
+// Navegación por secciones sin modificar la URL
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const targetId = link.getAttribute("href");
+
+        if (!targetId || targetId === "#") return;
+
+        const target = document.querySelector(targetId);
+
+        if (target) {
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
+});
